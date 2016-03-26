@@ -97,6 +97,15 @@ public class PlayerController : MonoBehaviour
 
 		Vector3 movement = input;
 
+//		movement = Camera.main.WorldToScreenPoint (movement);
+
+//		if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow)) {
+//			movement = transform.forward;
+//		}
+//		else if (Input.GetKey (KeyCode.LeftArrow) || Input.GetKey (KeyCode.RightArrow)) {
+//			movement = transform.right;
+//		}
+
 		movement *= (Mathf.Abs (input.x) == 1 && Mathf.Abs (input.z) == 1) ? .7f : 1;
 		if (Input.GetButton ("Run") && water > 0) {
 			movement *= runSpeed;
@@ -106,10 +115,14 @@ public class PlayerController : MonoBehaviour
 		}
 		//movement *= () ? runSpeed : walkSpeed;
 
+//		if (Input.GetKey (KeyCode.UpArrow) || Input.GetKey(KeyCode.RightArrow)) {
+			movement += Vector3.up * -8 ;
+//		}
+//		else if (Input.GetKey (KeyCode.DownArrow) || Input.GetKey (KeyCode.LeftArrow)) {
+//			movement -= Vector3.up * 8 * Time.deltaTime;
+//		}
 
-		movement += Vector3.up * -8;
-
-		characterController.Move (movement*Time.deltaTime);
+		characterController.Move (movement* Time.deltaTime);
 
         //Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
