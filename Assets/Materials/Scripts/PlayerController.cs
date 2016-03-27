@@ -28,6 +28,11 @@ public class PlayerController : MonoBehaviour
 	private CharacterController characterController;
 	private Quaternion targetRotation;
 
+    //booleans for objectives
+    public bool obj1 = false;
+    public bool obj2 = false;
+    public bool obj3 = false;
+
 
 
 
@@ -131,7 +136,16 @@ public class PlayerController : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Door"))
+        if (other.gameObject.CompareTag("obj1")){
+            obj1 = true;
+        }
+        if (other.gameObject.CompareTag("obj2")){
+            obj2 = true;
+        }
+        if (other.gameObject.CompareTag("obj3")){
+            obj3 = true;
+        }
+        if (other.gameObject.CompareTag("Door") && obj1 && obj2 && obj3)
 		{	
 			print ("YOU ESCAPED!!"); 
 			winImage.GetComponent<RawImage>().enabled = true;
