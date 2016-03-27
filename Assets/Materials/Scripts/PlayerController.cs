@@ -49,12 +49,22 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-		Vector3 input = new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"));
+		//Vector3 input = new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"));
+
+		transform.Rotate (0, Input.GetAxis ("Horizontal") * rotationSpeed,0);
+		Vector3 forward = transform.TransformDirection(Vector3.forward);
+		float speed = walkSpeed * Input.GetAxis ("Vertical");
 
 
-		if (input != Vector3.zero) {
-			targetRotation = Quaternion.LookRotation (input);
-			transform.eulerAngles = Vector3.up * Mathf.MoveTowardsAngle (transform.eulerAngles.y, targetRotation.eulerAngles.y, rotationSpeed * Time.deltaTime);
+
+		if (speed != 0) {
+
+
+			//targetRotation = Quaternion.LookRotation (input);
+			//transform.eulerAngles = Vector3.up * Mathf.MoveTowardsAngle (transform.eulerAngles.y, targetRotation.eulerAngles.y, rotationSpeed * Time.deltaTime);
+
+
+
 
 			animatorController.SetBool ("isWalking", true);
 
@@ -92,28 +102,27 @@ public class PlayerController : MonoBehaviour
 
 
 
-		float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+		//float moveHorizontal = Input.GetAxis("Horizontal");
+       // float moveVertical = Input.GetAxis("Vertical");
 
-		Vector3 movement = input;
+		//Vector3 movement = input;
 
-		movement *= (Mathf.Abs (input.x) == 1 && Mathf.Abs (input.z) == 1) ? .7f : 1;
+		//movement *= (Mathf.Abs (input.x) == 1 && Mathf.Abs (input.z) == 1) ? .7f : 1;
+
+
 		if (Input.GetButton ("Run") && water > 0) {
-			movement *= runSpeed;
+			//movement *= runSpeed;
+			speed *= runSpeed;
 		} else 
 		{
-			movement *= walkSpeed;
+			//movement *= walkSpeed;
 		}
-		//movement *= () ? runSpeed : walkSpeed;
+	
+		//movement += Vector3.up * -8;
 
+		//characterController.Move (movement*Time.deltaTime);
 
-		movement += Vector3.up * -8;
-
-		characterController.Move (movement*Time.deltaTime);
-
-        //Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-
-        //rb.AddForce(movement * walkSpeed);
+		characterController.SimpleMove (speed * forward);
     }
 
     void OnTriggerEnter(Collider other)
