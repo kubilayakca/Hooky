@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{C8B2E090-249E-3B7A-236A-04A8052E4898}</ProjectGuid>
+    <ProjectGuid>{E020B5FE-B168-2796-65D6-71EEC97E828F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -45,6 +45,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Materials\FemaleTeacher\Scripts\CamTarget.cs" />
+     <Compile Include="Assets\Materials\FemaleTeacher\Scripts\CharacterDemoController.cs" />
+     <Compile Include="Assets\Materials\FemaleTeacher\Scripts\MouseOrbit.cs" />
+     <Compile Include="Assets\Materials\FemaleTeacher\Scripts\Outfitter.cs" />
+     <Compile Include="Assets\Materials\FemaleTeacher\Scripts\RootMotionOff.cs" />
+     <Compile Include="Assets\Materials\FemaleTeacher\Scripts\SkinnedMeshCombiner.cs" />
      <Compile Include="Assets\Materials\Scripts\CameraController.cs" />
      <Compile Include="Assets\Materials\Scripts\DeanPatrol.cs" />
      <Compile Include="Assets\Materials\Scripts\PlayerController.cs" />

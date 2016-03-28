@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 	public float rotationSpeed;
 	public float walkSpeed;
 	public float runSpeed;
-    public float startWater;
+	public float startWater;
 	public static float initialWater;
 	//current water:
 	public static float water;
@@ -24,15 +24,15 @@ public class PlayerController : MonoBehaviour
 	public Scrollbar waterBar;
 	public GameObject waterBarImage;
 
-    //private Rigidbody rb;
+	//private Rigidbody rb;
 	private CharacterController characterController;
 	private Quaternion targetRotation;
 
 
 
 
-    void Start()
-    {
+	void Start()
+	{
 		initialWater = startWater;
 		water = initialWater;
 
@@ -45,16 +45,26 @@ public class PlayerController : MonoBehaviour
 		animatorController = GetComponent<Animator> ();
 		//waterBar = GetComponent<Scrollbar> ();
 		waterBar.size = 1;
-    }
+	}
 
-    void FixedUpdate()
-    {
-		Vector3 input = new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"));
+	void FixedUpdate()
+	{
+		//Vector3 input = new Vector3 (Input.GetAxis ("Horizontal"), 0, Input.GetAxis ("Vertical"));
+
+		transform.Rotate (0, Input.GetAxis ("Horizontal") * rotationSpeed,0);
+		Vector3 forward = transform.TransformDirection(Vector3.forward);
+		float speed = walkSpeed * Input.GetAxis ("Vertical");
 
 
-		if (input != Vector3.zero) {
-			targetRotation = Quaternion.LookRotation (input);
-			transform.eulerAngles = Vector3.up * Mathf.MoveTowardsAngle (transform.eulerAngles.y, targetRotation.eulerAngles.y, rotationSpeed * Time.deltaTime);
+
+		if (speed != 0) {
+
+
+			//targetRotation = Quaternion.LookRotation (input);
+			//transform.eulerAngles = Vector3.up * Mathf.MoveTowardsAngle (transform.eulerAngles.y, targetRotation.eulerAngles.y, rotationSpeed * Time.deltaTime);
+
+
+
 
 			animatorController.SetBool ("isWalking", true);
 
@@ -80,9 +90,9 @@ public class PlayerController : MonoBehaviour
 			{
 				animatorController.SetBool ("isCrawling", false);
 			}
-		
 
-		
+
+
 		} else 
 		{
 			animatorController.SetBool ("isWalking", false);
@@ -92,42 +102,41 @@ public class PlayerController : MonoBehaviour
 
 
 
-		float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
+		//float moveHorizontal = Input.GetAxis("Horizontal");
+		// float moveVertical = Input.GetAxis("Vertical");
 
-		Vector3 movement = input;
+		//Vector3 movement = input;
 
-		movement *= (Mathf.Abs (input.x) == 1 && Mathf.Abs (input.z) == 1) ? .7f : 1;
+		//movement *= (Mathf.Abs (input.x) == 1 && Mathf.Abs (input.z) == 1) ? .7f : 1;
+
+
 		if (Input.GetButton ("Run") && water > 0) {
-			movement *= runSpeed;
+			//movement *= runSpeed;
+			speed *= runSpeed;
 		} else 
 		{
-			movement *= walkSpeed;
+			//movement *= walkSpeed;
 		}
-		//movement *= () ? runSpeed : walkSpeed;
 
+		//movement += Vector3.up * -8;
 
-		movement += Vector3.up * -8;
+		//characterController.Move (movement*Time.deltaTime);
 
-		characterController.Move (movement*Time.deltaTime);
+		characterController.SimpleMove (speed * forward);
+	}
 
-        //Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-
-        //rb.AddForce(movement * walkSpeed);
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Door"))
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.CompareTag("Door"))
 		{	
 			print ("YOU ESCAPED!!"); 
 			winImage.GetComponent<RawImage>().enabled = true;
-            //SceneManager.LoadScene("levelname");
-        }
-    }
+			//SceneManager.LoadScene("levelname");
+		}
+	}
 
-    void OnTriggerStay (Collider other)
-    {
+	void OnTriggerStay (Collider other)
+	{
 
-    }
+	}
 }
