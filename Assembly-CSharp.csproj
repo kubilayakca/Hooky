@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Door1Controller.cs" />
      <Compile Include="Assets\Materials\FemaleTeacher\Scripts\CamTarget.cs" />
      <Compile Include="Assets\Materials\FemaleTeacher\Scripts\CharacterDemoController.cs" />
      <Compile Include="Assets\Materials\FemaleTeacher\Scripts\MouseOrbit.cs" />
@@ -82,6 +83,7 @@
      <None Include="Assets\TaichiCharacterPack\Readme.txt" />
      <None Include="Assets\TaichiCharacterPack\TwinViewer\Resources\Taichi\TwinViewer Settings\M01\fbx_ctrl.xml" />
      <None Include="Assets\TaichiCharacterPack\Viewer\Resources\Taichi\Viewer Settings\animation_list.txt" />
+     <None Include="Assets\Keys\Key\readME keys.txt" />
      <None Include="Assets\TaichiCharacterPack\Viewer\Resources\Taichi\Viewer Settings\stage_texture_list.txt" />
      <None Include="Assets\TaichiCharacterPack\Releasenote.txt" />
      <None Include="Assets\TaichiCharacterPack\TwinViewer\Resources\Taichi\TwinViewer Settings\F03\Arum\animation_list_a.txt" />
