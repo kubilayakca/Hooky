@@ -4,7 +4,7 @@ using System.Collections;
 public class TeacherPatrol : MonoBehaviour {
 
     public Transform[] points;
-    private int destPoint = 0;
+    private int destPoint;
     private NavMeshAgent agent;
     private int turn = 1;
 
@@ -15,7 +15,7 @@ public class TeacherPatrol : MonoBehaviour {
 
         //could be false if we want
         agent.autoBraking = true;
-
+        destPoint = 1;
         GotoNextPoint();
     }
 
